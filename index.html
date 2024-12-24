@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>黑神话：悟空 - 武术文化评分系统</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Digital Technology's Expression of Traditional Martial Arts Culture</h1>
+        
+        <div class="dimension-intro">
+            <h2>Research Background: Why Compare These Two Games?</h2>
+            <p>
+                The comparison between "Black Myth: Wukong" and "Sekiro: Shadows Die Twice" holds unique value. Both are high-quality action RPGs (Souls-like ARPG) but represent different martial arts traditions: "Black Myth: Wukong" is based on Chinese traditional culture and Journey to the West mythology, while "Sekiro" embodies Japanese Bushido spirit and Sengoku period culture. Their similarity in genre (precise combat systems, realistic action representation) combined with their cultural differences provides an ideal sample for studying how digital technology presents traditional martial arts culture. In the current global gaming market, "Sekiro" has proven the commercial potential of traditional cultural-themed games, while "Black Myth" represents a new digital attempt at Chinese martial arts culture.
+            </p>
+        </div>
+
+        <div class="dimension-intro">
+            <h2>Rating Dimensions Explanation</h2>
+            <div class="dimensions-grid">
+                <div class="intro-item">
+                    <h3>Aesthetic Score</h3>
+                    <ul>
+                        <li>Fluidity and continuity of techniques</li>
+                        <li>Balance of hardness and softness</li>
+                        <li>Mind-body connection in movements</li>
+                        <li>Physical and spiritual expression</li>
+                    </ul>
+                </div>
+
+                <div class="intro-item">
+                    <h3>Philosophical Alignment</h3>
+                    <ul>
+                        <li>Human-nature harmony expression</li>
+                        <li>Yin-Yang and Five Elements concepts</li>
+                        <li>"Natural way" combat system</li>
+                        <li>Spiritual cultivation journey</li>
+                    </ul>
+                </div>
+
+                <div class="intro-item">
+                    <h3>Cultural Awareness</h3>
+                    <ul>
+                        <li>Martial arts knowledge depth</li>
+                        <li>Style representation accuracy</li>
+                        <li>Cultural background clarity</li>
+                        <li>Cultural context understanding</li>
+                    </ul>
+                </div>
+
+                <div class="intro-item">
+                    <h3>Emotional Resonance</h3>
+                    <ul>
+                        <li>Story-spirit integration</li>
+                        <li>Character growth authenticity</li>
+                        <li>Core values connection</li>
+                        <li>Learning inspiration</li>
+                    </ul>
+                </div>
+
+                <div class="intro-item">
+                    <h3>Cross-cultural Adaptability</h3>
+                    <ul>
+                        <li>International accessibility</li>
+                        <li>Universal content design</li>
+                        <li>Cross-cultural appeal</li>
+                        <li>Communication effectiveness</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        
+
+        <div class="submit-counter-container">
+            <button id="submit-comparison" class="submit-btn">Submit Rating</button>
+            <div class="counter-container">
+                <div class="counter-item">
+                    <span class="counter-label">Total Responses</span>
+                    <div class="counter-number" id="totalCount">0</div>
+                </div>
+            </div>
+            <button id="reset-data" class="reset-btn">Reset Data</button>
+        </div>
+
+        <!-- 评分部分 -->
+        <div class="games-comparison">
+            <div class="rating-header">
+                <div class="game-title">Black Myth: Wukong</div>
+                <div class="game-title">Sekiro: Shadows Die Twice</div>
+            </div>
+
+            <div class="rating-grid">
+                <div class="rating-row">
+                    <div class="rating-label">Aesthetic Score</div>
+                    <div class="rating-controls">
+                        <div class="slider-container">
+                            <input type="range" min="1" max="10" value="5" class="slider" id="wukong-aesthetic">
+                            <span class="score">5</span>
+                        </div>
+                        <div class="slider-container">
+                            <input type="range" min="1" max="10" value="5" class="slider" id="sekiro-aesthetic">
+                            <span class="score">5</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="rating-row">
+                    <div class="rating-label">Philosophical Alignment</div>
+                    <div class="rating-controls">
+                        <div class="slider-container">
+                            <input type="range" min="1" max="10" value="5" class="slider" id="wukong-philosophical">
+                            <span class="score">5</span>
+                        </div>
+                        <div class="slider-container">
+                            <input type="range" min="1" max="10" value="5" class="slider" id="sekiro-philosophical">
+                            <span class="score">5</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="rating-row">
+                    <div class="rating-label">Cultural Awareness</div>
+                    <div class="rating-controls">
+                        <div class="slider-container">
+                            <input type="range" min="1" max="10" value="5" class="slider" id="wukong-cultural">
+                            <span class="score">5</span>
+                        </div>
+                        <div class="slider-container">
+                            <input type="range" min="1" max="10" value="5" class="slider" id="sekiro-cultural">
+                            <span class="score">5</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="rating-row">
+                    <div class="rating-label">Emotional Resonance</div>
+                    <div class="rating-controls">
+                        <div class="slider-container">
+                            <input type="range" min="1" max="10" value="5" class="slider" id="wukong-emotional">
+                            <span class="score">5</span>
+                        </div>
+                        <div class="slider-container">
+                            <input type="range" min="1" max="10" value="5" class="slider" id="sekiro-emotional">
+                            <span class="score">5</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="rating-row">
+                    <div class="rating-label">Cross-cultural Adaptability</div>
+                    <div class="rating-controls">
+                        <div class="slider-container">
+                            <input type="range" min="1" max="10" value="5" class="slider" id="wukong-crosscultural">
+                            <span class="score">5</span>
+                        </div>
+                        <div class="slider-container">
+                            <input type="range" min="1" max="10" value="5" class="slider" id="sekiro-crosscultural">
+                            <span class="score">5</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 结果展示区域 -->
+        <div id="comparison-result" class="comparison-result">
+            <div class="charts-container">
+                <div class="chart-item">
+                    <h3>Comparison Radar Chart</h3>
+                    <canvas id="comparisonRadarChart"></canvas>
+                </div>
+                <div class="chart-item">
+                    <h3>Average Score Comparison</h3>
+                    <canvas id="comparisonBarChart"></canvas>
+                </div>
+            </div>
+            <div class="stats-container">
+                <h3>Detailed Statistics</h3>
+                <div id="statsContent"></div>
+            </div>
+        </div>
+    </div>
+    <script src="firebase-config.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
